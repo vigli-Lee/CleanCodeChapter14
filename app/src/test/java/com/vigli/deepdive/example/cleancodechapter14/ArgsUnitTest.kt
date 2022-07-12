@@ -33,4 +33,11 @@ class ArgsUnitTest {
         assertEquals(args.isValid, true)
         assertEquals(args.getString('d'), "")
     }
+
+    @Test
+    fun emptyArgsResultInteger() {
+        val args = Args("p#", emptyArray())
+        assertEquals(args.isValid, true)
+        assertEquals(args.getInt('p'), 0)
+    }
 }
