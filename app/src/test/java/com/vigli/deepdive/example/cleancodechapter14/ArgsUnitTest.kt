@@ -26,4 +26,11 @@ class ArgsUnitTest {
         assertEquals(args.isValid, true)
         assertEquals(args.getBoolean('l'), false)
     }
+
+    @Test
+    fun emptyArgsResultString() {
+        val args = Args("d*", emptyArray())
+        assertEquals(args.isValid, true)
+        assertEquals(args.getString('d'), "")
+    }
 }
