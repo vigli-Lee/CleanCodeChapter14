@@ -40,4 +40,23 @@ class ArgsUnitTest {
         assertEquals( true, args.isValid)
         assertEquals(0, args.getInt('p'))
     }
+
+    @Test
+    fun testSimpleDoublePresent() {
+        val args = Args("x##", arrayOf("-x", "42.3"))
+        assertTrue(args.isValid)
+        assertEquals(1, args.cardinality())
+        assertTrue(args.has('x'))
+        assertEquals(42.3, args.getDouble('x'), .001)
+    }
+
+    @Test
+    fun testInvalidDouble() {
+        val args = Args("x##", arrayOf("-x", "Forty two"))
+        assertFalse(args.isValid)
+        assertEquals(0, args.cardinality())
+        assertFalse(args.has('x'))
+        assertEquals(0, args.getInt('x'))
+        assertEquals("Argument -x expects a double but was 'Forty two'.", args.errorMessage())
+    }
 }
