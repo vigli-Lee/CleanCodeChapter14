@@ -283,14 +283,6 @@ public class Args {
             this.intValue = i;
         }
 
-        public int getIntValue() {
-            return intValue;
-        }
-
-        public void setIntValue(int intValue) {
-            this.intValue = intValue;
-        }
-
         private static class BooleanArgumentMarshaler extends ArgumentMarshaler {
 
         }
