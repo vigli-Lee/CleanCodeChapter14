@@ -52,11 +52,12 @@ class ArgsUnitTest {
 
     @Test
     fun testInvalidDouble() {
-        val args = Args("x##", arrayOf("-x", "Forty two"))
-        assertFalse(args.isValid)
-        assertEquals(0, args.cardinality())
-        assertFalse(args.has('x'))
-        assertEquals(0, args.getInt('x'))
-        assertEquals("Argument -x expects a double but was 'Forty two'.", args.errorMessage())
+        try {
+            Args("x##", arrayOf("-x", "Forty two"))
+        } catch (e: ArgsException) {
+            assertEquals(ArgsException.ErrorCode.INVALID_DOUBLE, e.errorCode)
+            assertEquals('x', e.errorArgumentId)
+            assertEquals("Forty two", e.errorMessage())
+        }
     }
 }
